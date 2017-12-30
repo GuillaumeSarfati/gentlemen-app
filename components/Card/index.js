@@ -14,25 +14,22 @@ const defaultProps = {};
 
 import style from './style';
 
-const Card = (props) => {
-  console.log(props);
-  return (
-    <View style={style.card}>
-      <ImageBackground
-        style={style.background}
-        source={{ uri: props.pictures[0] }}
-      >
-        <View style={style.profile}>
-          <Text> {props.firstname} </Text>
-        </View>
-        <View style={style.actions}>
-          <Dislike onPress={() => console.warn('dislike')} />
-          <Like onPress={() => console.warn('like')} />
-        </View>
-      </ImageBackground>
-    </View>
-  );
-};
+const Card = props => (
+  <View style={style.card}>
+    <ImageBackground
+      style={style.background}
+      source={{ uri: props.pictures[0] }}
+    >
+      <View style={style.profile}>
+        <Text> {props.firstname} </Text>
+      </View>
+      <View style={style.actions}>
+        <Dislike onPress={() => console.warn('dislike')} />
+        <Like onPress={() => console.warn('like')} />
+      </View>
+    </ImageBackground>
+  </View>
+);
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;

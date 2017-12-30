@@ -6,22 +6,17 @@ export const INITIAL_STATE = {
   member: null,
   location: null,
   token: null,
+  rehydrated: false,
 };
 
 export default handleActions({
-  [PERSIST.REHYDRATE]: (state, action) => {
-    console.log('persist rehydrate', action.payload);
-    return ({
-      ...action.payload.me,
-    });
-  },
+  [PERSIST.REHYDRATE]: (state, action) => ({
+    ...action.payload.me,
+    rehydrated: true,
+  }),
   [ME.FACEBOOK_CONNECT.FULFILLED]: (state, { payload }) => payload.data,
-  [ME.GET_CURRENT_LOCATION.FULFILLED]: (state, { payload }) => {
-    console.log(ME.GET_CURRENT_LOCATION.FULFILLED);
-    console.log(payload);
-    return {
-      ...state,
-      location: payload,
-    };
-  },
+  [ME.GET_CURRENT_LOCATION.FULFILLED]: (state, { payload }) => ({
+    ...state,
+    location: payload,
+  }),
 }, INITIAL_STATE);

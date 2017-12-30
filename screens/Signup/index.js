@@ -21,16 +21,17 @@ import style from './style';
 
 
 class SignupScreen extends React.Component {
-  componentDidMount = () => this.authenticate()
-  componentDidUpdate = () => this.authenticate()
-
-  authenticate = () => {
-    if (this.props.me.token && this.props.me.token && this.props.me.token.id) {
-      Api.defaults.headers = {
-        Authorization: this.props.me.token.id,
-      };
-      this.props.navigation.navigate('Home');
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.me.rehydrated !== this.props.me.rehydrated && nextProps.me.token && nextProps.me.token && nextProps.me.token.id) {
+      this.authenticate(nextProps);
     }
+  }
+
+  authenticate = (props) => {
+    Api.defaults.headers = {
+      Authorization: props.me.token.id,
+    };
+    this.props.navigation.navigate('Home');
   }
 
   render() {

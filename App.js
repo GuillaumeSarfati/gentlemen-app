@@ -21,11 +21,12 @@ export const store = createStore(
   ),
 );
 
+// AsyncStorage.clear();
+
 persistStore(store, {
   storage: AsyncStorage,
   whitelist: [
     'me',
-    'users',
   ],
 });
 

@@ -19,18 +19,13 @@ import style from './style';
 
 class HomeScreen extends React.Component {
   componentDidMount = () => {
-    if (this.props.location) {
-      this.props.near(location);
-    }
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    console.log('componentWillReceiveProps', nextProps.location);
+    this.props.getCurrentLocation();
   }
 
   componentDidUpdate() {
-    if (this.props.users.data.length === 2 && this.props.users.done) {
-      this.props.near();
+    console.log('COMPONENT DID UPDATE', this.props.users.status);
+    if (this.props.users.status === 'empty') {
+      this.props.near(this.props.location);
     }
   }
 
@@ -64,11 +59,10 @@ class HomeScreen extends React.Component {
           renderIconRight={this.renderIconRight}
         />
         <SwipeCards
-          cardKey="id"
           cards={this.props.users.data}
           renderCard={cardData => <Card {...cardData} />}
           renderNoMoreCards={() => (
-            this.props.users.done && !this.props.users.data.length
+            this.props.users.status === 'done'
               ? <NoMoreCards />
               : null
           )}

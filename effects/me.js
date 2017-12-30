@@ -34,7 +34,7 @@ const getCurrentLocationAsync = async (dispatch) => {
 export const facebookConnect = () => dispatch => facebookConnectAsync(dispatch);
 export const getCurrentLocation = () => dispatch => getCurrentLocationAsync(dispatch);
 
-const near = location => dispatch => dispatch(MeActions.near(Api.get(`/Members/near/${location.coords.latitude}/${location.coords.longitude}`)));
+const near = location => dispatch => dispatch(MeActions.near(Api.get(`/Members/near/${48.864716 || location.coords.latitude}/${2.349014 || location.coords.longitude}`)));
 
 export default {
   near,
