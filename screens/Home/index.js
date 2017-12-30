@@ -18,7 +18,13 @@ import style from './style';
 
 class HomeScreen extends React.Component {
   componentDidMount = () => {
-    this.props.near();
+    if (this.props.location) {
+      this.props.near(location);
+    }
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    console.log('componentWillReceiveProps', nextProps.location);
   }
 
   handleYup = (card) => {
@@ -68,8 +74,10 @@ class HomeScreen extends React.Component {
 export default connect(
   state => ({
     users: state.users,
+    location: state.me.location,
   }),
   dispatch => ({
     near: bindActionCreators(MeEffects.near, dispatch),
+    getCurrentLocation: bindActionCreators(MeEffects.getCurrentLocation, dispatch),
   }),
 )(HomeScreen);
