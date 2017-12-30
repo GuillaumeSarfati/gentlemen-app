@@ -1,10 +1,13 @@
 import { createAction } from 'redux-actions';
 import { createApiAction, generateApiAction } from '../utils/api';
 
-export const LOGIN = generateApiAction('LOGIN');
+export const FACEBOOK_CONNECT = generateApiAction('ME_FACEBOOK_CONNECT');
+export const NEAR = generateApiAction('ME_NEAR');
 
-export const login = createApiAction(LOGIN);
+const facebookConnect = createApiAction(FACEBOOK_CONNECT);
+const near = createApiAction(NEAR);
 
 export default {
-  login,
+  facebookConnect,
+  near,
 };

@@ -1,8 +1,20 @@
 import { handleActions } from 'redux-actions';
 import * as USERS from '../actions/users';
+import * as ME from '../actions/me';
 
-export const INITIAL_STATE = [];
+export const INITIAL_STATE = {
+  done: null,
+  data: [],
+};
 
 export default handleActions({
-  [USERS.GET_NEXT.FULFILLED]: (state, action) => action.payload.data,
+  [ME.NEAR.PENDING]: state => ({
+    ...state,
+    done: null,
+  }),
+  [ME.NEAR.FULFILLED]: (state, { payload }) => ({
+    ...state,
+    done: true,
+    data: payload.data,
+  }),
 }, INITIAL_STATE);

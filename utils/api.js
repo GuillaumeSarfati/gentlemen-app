@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-export const API_URL = 'http://localhost:3000';
+export const API_URL = 'http://192.168.1.100:3000';
 
 export const createApiAction = ({ DEFINE }) => {
   const action = payload => ({
@@ -17,8 +17,6 @@ export const generateApiAction = define => ({
   REJECTED: `${define}_REJECTED`,
   FULFILLED: `${define}_FULFILLED`,
 });
-
-
 
 // export const Stripe = axios.create({
 //   baseURL: 'https://api.stripe.com/v1',

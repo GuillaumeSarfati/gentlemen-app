@@ -12,24 +12,13 @@ import HeaderRight from '../../components/HeaderRight';
 import Card from '../../components/Card';
 import NoMoreCards from '../../components/NoMoreCards';
 
-import UsersEffects from '../../effects/users';
+import MeEffects from '../../effects/me';
 
 import style from './style';
 
 class HomeScreen extends React.Component {
-  state = {
-    cards: [
-      { text: 'Tomato', backgroundColor: 'red' },
-      { text: 'Aubergine', backgroundColor: 'purple' },
-      { text: 'Courgette', backgroundColor: 'green' },
-      { text: 'Blueberry', backgroundColor: 'blue' },
-      { text: 'Umm...', backgroundColor: 'cyan' },
-      { text: 'orange', backgroundColor: 'orange' },
-    ],
-  }
-
-  componentWillMount = () => {
-    this.props.getNext();
+  componentDidMount = () => {
+    this.props.near();
   }
 
   handleYup = (card) => {
@@ -60,15 +49,13 @@ class HomeScreen extends React.Component {
           renderIconRight={this.renderIconRight}
         />
         <SwipeCards
-          cards={this.state.cards}
+          cards={this.props.users.data}
           renderCard={cardData => <Card {...cardData} />}
-          renderNoMoreCards={() => <NoMoreCards />}
-
+          renderNoMoreCards={() => (this.props.users.done && !this.props.users.data.length ? <NoMoreCards /> : null)}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
           handleMaybe={this.handleMaybe}
           hasMaybeAction
-
           showYup={false}
           showNope={false}
           showMaybe={false}
@@ -83,6 +70,6 @@ export default connect(
     users: state.users,
   }),
   dispatch => ({
-    getNext: bindActionCreators(UsersEffects.getNext, dispatch),
+    near: bindActionCreators(MeEffects.near, dispatch),
   }),
 )(HomeScreen);

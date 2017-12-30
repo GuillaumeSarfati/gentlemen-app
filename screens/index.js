@@ -11,7 +11,7 @@ export const defaultNavigator = StackNavigator({
   Signup: { screen: Signup, path: '/Signup' },
   Explanation: { screen: Explanation, path: '/Explanation' },
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Signup',
   cardStyle: {
     shadowColor: 'transparent',
   },
@@ -24,7 +24,7 @@ export const defaultNavigator = StackNavigator({
 const modalNavigator = StackNavigator({
   Settings: { screen: Settings, path: '/Settings' },
   Profile: { screen: Profile, path: '/Profile' },
-  defaultNavigator: { screen: defaultNavigator, path: '/Home' },
+  defaultNavigator: { screen: defaultNavigator, path: '/Signup' },
 }, {
   initialRouteName: 'defaultNavigator',
   mode: 'modal',
