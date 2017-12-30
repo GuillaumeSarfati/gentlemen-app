@@ -13,6 +13,7 @@ import Card from '../../components/Card';
 import NoMoreCards from '../../components/NoMoreCards';
 
 import MeEffects from '../../effects/me';
+import MatchEffects from '../../effects/match';
 
 import style from './style';
 
@@ -27,16 +28,24 @@ class HomeScreen extends React.Component {
     console.log('componentWillReceiveProps', nextProps.location);
   }
 
+  componentDidUpdate() {
+    if (this.props.users.data.length === 2 && this.props.users.done) {
+      this.props.near();
+    }
+  }
+
   handleYup = (card) => {
-    console.log(`Yup for ${card.text}`);
+    this.props.match({
+      destId: card.id,
+      status: 'like',
+    });
   }
 
   handleNope = (card) => {
-    console.log(`Nope for ${card.text}`);
-  }
-
-  handleMaybe = (card) => {
-    console.log(`Maybe for ${card.text}`);
+    this.props.match({
+      destId: card.id,
+      status: 'unlike',
+    });
   }
 
   renderIconLeft = () => (
@@ -55,16 +64,16 @@ class HomeScreen extends React.Component {
           renderIconRight={this.renderIconRight}
         />
         <SwipeCards
+          cardKey="id"
           cards={this.props.users.data}
           renderCard={cardData => <Card {...cardData} />}
-          renderNoMoreCards={() => (this.props.users.done && !this.props.users.data.length ? <NoMoreCards /> : null)}
+          renderNoMoreCards={() => (
+            this.props.users.done && !this.props.users.data.length
+              ? <NoMoreCards />
+              : null
+          )}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          handleMaybe={this.handleMaybe}
-          hasMaybeAction
-          showYup={false}
-          showNope={false}
-          showMaybe={false}
         />
       </View>
     );
@@ -78,6 +87,7 @@ export default connect(
   }),
   dispatch => ({
     near: bindActionCreators(MeEffects.near, dispatch),
+    match: bindActionCreators(MatchEffects.upsert, dispatch),
     getCurrentLocation: bindActionCreators(MeEffects.getCurrentLocation, dispatch),
   }),
 )(HomeScreen);
