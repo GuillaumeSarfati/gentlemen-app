@@ -10,7 +10,7 @@ import style from './style';
 const Header = props => (
   <View style={style.header}>
     {props.renderIconLeft()}
-    <Text> Header </Text>
+    <Text> MEETEAT </Text>
     {props.renderIconRight()}
   </View>
 );

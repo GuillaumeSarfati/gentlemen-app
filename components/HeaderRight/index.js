@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+import style from './style';
 
 const propTypes = {
   onPress: PropTypes.func.isRequired,
 };
-const defaultProps = {};
 
-import style from './style';
+const defaultProps = {};
 
 const HeaderRight = props => (
   <TouchableOpacity
     style={style.headerRight}
     onPress={props.onPress}
   >
-    <Text> Settings </Text>
+    <Ionicons name="ios-wine" size={42} />
   </TouchableOpacity>
 );
 

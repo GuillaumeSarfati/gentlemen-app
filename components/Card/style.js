@@ -22,7 +22,6 @@ export default StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'cover',
   },
   actions: {
     ...mixins.flex('row', 'space-around', 'center'),

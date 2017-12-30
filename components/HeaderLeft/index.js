@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 const propTypes = {
   onPress: PropTypes.func.isRequired,
@@ -14,7 +15,7 @@ const HeaderLeft = props => (
     style={style.headerLeft}
     onPress={props.onPress}
   >
-    <Text> Profile </Text>
+    <FontAwesome name="user" size={42} />
   </TouchableOpacity>
 );
 

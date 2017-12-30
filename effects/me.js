@@ -27,14 +27,12 @@ const getCurrentLocationAsync = async (dispatch) => {
     // TODO Check global denied perms with redux action
     return console.warn('Permission to access location was denied');
   }
-
   // const location = await ;
   return dispatch(MeActions.getCurrentLocation(Location.getCurrentPositionAsync({})));
 };
 
 export const facebookConnect = () => dispatch => facebookConnectAsync(dispatch);
 export const getCurrentLocation = () => dispatch => getCurrentLocationAsync(dispatch);
-
 
 const near = location => dispatch => dispatch(MeActions.near(Api.get(`/Members/near/${location.coords.latitude}/${location.coords.longitude}`)));
 
