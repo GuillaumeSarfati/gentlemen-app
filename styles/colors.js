@@ -3,6 +3,7 @@ export const gold = 'rgb(200, 179, 136)';
 export const dark = 'rgb(92, 92, 92)';
 export const purple = 'rgb(170, 170, 210)';
 export const blue = 'rgb(0, 173, 245)';
+export const facebook = 'rgb(66, 102, 178)';
 export const red = '#e74c3c';
 
 export const lightGrey = 'rgb(247, 247, 247)';

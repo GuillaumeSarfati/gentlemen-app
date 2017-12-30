@@ -17,7 +17,12 @@ export default StyleSheet.create({
     ...mixins.flex('column', 'center', 'center'),
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'grey',
+  },
+  background: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
   },
   actions: {
     ...mixins.flex('row', 'space-around', 'center'),
