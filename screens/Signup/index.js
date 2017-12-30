@@ -21,13 +21,10 @@ import style from './style';
 
 
 class SignupScreen extends React.Component {
-  onChange = name => (value) => {
-    this.setState({
-      [name]: value,
-    });
-  }
+  componentDidMount = () => this.authenticate()
+  componentDidUpdate = () => this.authenticate()
 
-  componentDidUpdate() {
+  authenticate = () => {
     if (this.props.me.token && this.props.me.token && this.props.me.token.id) {
       Api.defaults.headers = {
         Authorization: this.props.me.token.id,

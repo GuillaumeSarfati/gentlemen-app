@@ -8,10 +8,9 @@ import Explanation from './Explanation';
 
 export const defaultNavigator = StackNavigator({
   Home: { screen: Home, path: '/Home' },
-  Signup: { screen: Signup, path: '/Signup' },
   Explanation: { screen: Explanation, path: '/Explanation' },
 }, {
-  initialRouteName: 'Signup',
+  initialRouteName: 'Home',
   cardStyle: {
     shadowColor: 'transparent',
   },
@@ -22,11 +21,12 @@ export const defaultNavigator = StackNavigator({
 });
 
 const modalNavigator = StackNavigator({
+  Signup: { screen: Signup, path: '/Signup' },
   Settings: { screen: Settings, path: '/Settings' },
   Profile: { screen: Profile, path: '/Profile' },
-  defaultNavigator: { screen: defaultNavigator, path: '/Signup' },
+  defaultNavigator: { screen: defaultNavigator, path: '/Home' },
 }, {
-  initialRouteName: 'defaultNavigator',
+  initialRouteName: 'Signup',
   mode: 'modal',
   headerMode: 'none',
   navigationOptions: {
