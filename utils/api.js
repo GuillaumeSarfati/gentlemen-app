@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-export const API_URL = 'http://192.168.1.100:3000';
+export const API_URL = 'http://192.168.1.89:3000';
 
 export const createApiAction = ({ DEFINE }) => {
   const action = payload => ({
