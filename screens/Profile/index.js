@@ -3,61 +3,81 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Slider,
+  Image,
+  ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import {
+  Ionicons,
+  FontAwesome,
+} from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Swiper from 'react-native-swiper';
 
 import ScreenView from '../../components/ScreenView';
 
-import style from './style';
+import style, {
+  ICON_SIZE,
+  ICON_COLOR,
+  SWIPER_HEIGHT,
+} from './style';
 
 class ProfileScreen extends React.Component {
+  Pictures = () => this.props.me.member.pictures
+    .map((picture, i) => (
+      <Image
+        key={i.toString()}
+        style={style.image}
+        source={{ uri: picture }}
+        resizeMode="cover"
+        resizeMethod="scale"
+      />
+    ));
+
   render() {
     return (
       <ScreenView>
-        <View style={{
-          backgroundColor: 'white',
-          borderBottomWidth: 1,
-          borderBottomColor: 'grey',
-          height: 40,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          padding: 4,
-        }}
-        >
-          <View style={{
-            flex: 4,
-            height: 42,
-            position: 'absolute',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}
+        <ScrollView style={style.scrollView} >
+          <Swiper
+            autoplay={false}
+            style={style.swiper}
+            height={SWIPER_HEIGHT}
+            activeDotColor="white"
           >
-            <Text>Réglages</Text>
+            { this.Pictures() }
+          </Swiper>
+          <View style={style.informationContainer}>
+            <Text style={style.textTitle}>{this.props.me.member.firstname}</Text>
+            <Text style={style.textDefault}>Engineer</Text>
+            <Text style={style.textDefault}>42</Text>
           </View>
-          <View style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-          }}
+          <View style={style.descriptionContainer}>
+            <Text style={style.textDefault}>
+              1337 i never message first !
+            </Text>
+          </View>
+        </ScrollView>
+        <View style={style.actionsContainer}>
+          <TouchableOpacity
+            style={style.actionButton}
           >
-            <TouchableOpacity>
-              <Text
-                style={{
-                  color: 'pink',
-                }}
-              >Terminé
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View>
-          <Text>Distance maximal</Text>
-          <Slider />
+            <Ionicons
+              name="md-settings"
+              size={ICON_SIZE}
+              color={ICON_COLOR}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={style.actionButton}
+            onPress={() => this.props.navigation.navigate('MemberSettings')}
+          >
+            <FontAwesome
+              name="pencil"
+              size={ICON_SIZE}
+              color={ICON_COLOR}
+            />
+          </TouchableOpacity>
         </View>
       </ScreenView>
     );
@@ -65,6 +85,8 @@ class ProfileScreen extends React.Component {
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    me: state.me,
+  }),
   dispatch => ({}),
 )(ProfileScreen);

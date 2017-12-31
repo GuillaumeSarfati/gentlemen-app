@@ -8,11 +8,13 @@ const facebookConnectAsync = async (dispatch) => {
   const { type, token } = await Facebook.logInWithReadPermissionsAsync('162154747848108', {
     permissions: [
       'email',
+      'user_photos',
       'public_profile',
       'user_about_me',
       'user_birthday',
     ],
   });
+  console.log('after faceBookConnectAsync', type, token);
   if (type === 'success') {
     return dispatch(MeActions.facebookConnect(Api.post(`/Members/facebook/${token}`)));
   }

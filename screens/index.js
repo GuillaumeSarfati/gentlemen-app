@@ -1,10 +1,11 @@
 import { StackNavigator } from 'react-navigation';
 
 import Home from './Home';
-import Profile from './Profile';
-import Settings from './Settings';
 import Signup from './Signup';
+import Profile from './Profile';
+import AppSettings from './AppSettings';
 import Explanation from './Explanation';
+import MemberSettings from './MemberSettings';
 
 export const defaultNavigator = StackNavigator({
   Home: { screen: Home, path: '/Home' },
@@ -22,7 +23,8 @@ export const defaultNavigator = StackNavigator({
 
 const modalNavigator = StackNavigator({
   Signup: { screen: Signup, path: '/Signup' },
-  Settings: { screen: Settings, path: '/Settings' },
+  AppSettings: { screen: AppSettings, path: '/AppSettings' },
+  MemberSettings: { screen: MemberSettings, path: '/MemberSettings' },
   Profile: { screen: Profile, path: '/Profile' },
   defaultNavigator: { screen: defaultNavigator, path: '/Home' },
 }, {
